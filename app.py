@@ -26,7 +26,7 @@ if uploaded_image is not None:
     st.image(image, caption='Uploaded Image.', use_column_width=True)
     ##
 
-    bytes_data = uploaded_image.read()
+    #bytes_data = uploaded_image.read()
     alzheimers_url = 'https://alzheimers-api-g5wnkiowzq-ew.a.run.app/upload_image'
     response = requests.post(alzheimers_url, files={"file": bytes_data})
 
