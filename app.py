@@ -27,7 +27,7 @@ if uploaded_image is not None:
     ##
 
     bytes_data = uploaded_image.read()
-    alzheimers_url = 'https://alzheimers-api-g5wnkiowzq-ew.a.run.app/docs#/default/receive_image_upload_image_post'
+    alzheimers_url = 'https://alzheimers-api-g5wnkiowzq-ew.a.run.app/upload_image'
     response = requests.post(alzheimers_url, files={"file": bytes_data})
 
     prediction = response.json()
