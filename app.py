@@ -41,8 +41,9 @@ if uploaded_image is not None:
             data_df = pd.DataFrame(data_series, columns=['Probability'])
             data_df = data_df.sort_values(by='Probability', ascending=False)
             index_of_max = data_df['Probability'].idxmax()
-            columns[1].write(f'Diagnosis:  {index_of_max}')
-            columns[1].write(data_df)
+            columns[1].write(f'**Diagnosis:  {index_of_max}**')
+            with st.expander("Click for detailed information"): ### does not work yet
+                columns[1].write(data_df)
             #columns[1].bar_chart(data_series)
 
         else:
