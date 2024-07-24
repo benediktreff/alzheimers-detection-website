@@ -3,6 +3,8 @@ import requests
 from PIL import Image
 import pandas as pd
 
+st.set_page_config(page_title="Diagnosis", page_icon=":material/neurology:")
+
 #Background
 st.markdown(
     """
