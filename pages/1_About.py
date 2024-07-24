@@ -3,15 +3,28 @@ from PIL import Image
 
 st.set_page_config(page_title="About", page_icon=":material/info:")
 
+#Background
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url('https://ivinsutah.gov/wp-content/uploads/2016/05/professional-backgrounds-for-websites3-2.jpg');
+        background-size: cover;  /* Adjust as needed */
+        background-repeat: no-repeat;}.css-18e3th9 {
+        color: #000;  /* Change text color for main content */}.css-1v3fvcr {
+        border: 2px solid #000;  /* Add border to specific elements */}</style>
+    """,
+    unsafe_allow_html=True)
+
 # Logo
 image = Image.open('../alzheimers-detection-website/Logo/Logo_round.png')
 st.logo(image, )
 
 # Header image
-st.image('https://aboutimi.com/wp-content/uploads/2021/06/Brain.jpeg')
+#st.image('https://aboutimi.com/wp-content/uploads/2021/06/Brain.jpeg')
 
 #Title
-st.markdown("<h1 style='text-align: center; color: white;'>About this Project</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: black;'>About this Project</h1>", unsafe_allow_html=True)
 
 # Sub-Header
 st.subheader("Learn more about the background of this project to detect alzheimer's disease in an early stage")
