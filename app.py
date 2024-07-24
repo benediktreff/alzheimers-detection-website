@@ -69,17 +69,14 @@ if uploaded_image is not None:
             st.markdown('')
             with st.expander("Details about probability distribution"):
                 st.write(data_df)
-            #with st.expander("Click for information about probability:"):
-                #st.write('Probability distribution')
-                #st.write(f'Healthy: {data_df.loc['Healthy', 'Probability']}')
             with st.expander("Details about diagnosis"):
                 st.warning("Disclaimer: This model has been developed as a tool to assist doctors in classifying the stage of Alzheimer's disease and aiding in diagnosis. It does not replace a human doctor, and any diagnosis should not be made without consultation with a qualified medical professional.")
                 if index_of_max == 'Healthy':
-                    st.write(f"With an accuracy of {round(response_json['none'],3)*100}%, it is recommended to refer the patient to a specialist in neurology or psychiatry to confirm that Alzheimer's disease can be excluded from the diagnosis.")
+                    st.write(f"With an accuracy of {str(response_json['none']*100)[:5]}%, it is recommended to refer the patient to a specialist in neurology or psychiatry to confirm that Alzheimer's disease can be excluded from the diagnosis.")
                 if index_of_max == "Risk of Alzheimer's Disease (stage: mild)":
-                    st.write(f"The model predicts mild dementia with an accuracy of {round(response_json['mild'],3)*100}%. It is urged to refer the patient to a specialist in neurology or psychiatry to confirm the illness and the stage. Since the model has been trained to predict the three stages (Non-demented, Very Mild Dementia, Mild Dementia), it is important to be aware that the actual stage might also be moderate or even more advanced.")
+                    st.write(f"The model predicts mild dementia with an accuracy of {str(response_json['mild']*100)[:5]}%. It is urged to refer the patient to a specialist in neurology or psychiatry to confirm the illness and the stage. Since the model has been trained to predict the three stages (Non-demented, Very Mild Dementia, Mild Dementia), it is important to be aware that the actual stage might also be moderate or even more advanced.")
                 if index_of_max == "Risk of Alzheimer's Disease (stage: very mild)":
-                    st.write(f"The model predicts very mild dementia with an accuracy of {round(response_json['very_mild'],3)*100}%. It is advised to consult a specialist in neurology or psychiatry to confirm the stage of dementia. While the model is trained to predict this stage, further medical evaluation is necessary to determine the precise condition.")
+                    st.write(f"The model predicts very mild dementia with an accuracy of {str(response_json['very_mild']*100)[:5]}%. It is advised to consult a specialist in neurology or psychiatry to confirm the stage of dementia. While the model is trained to predict this stage, further medical evaluation is necessary to determine the precise condition.")
             #st.bar_chart(data_series)
 
         else:
