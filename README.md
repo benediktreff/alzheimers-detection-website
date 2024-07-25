@@ -1,6 +1,6 @@
 ## Alzheimer’s Detection Tool Frontend
 
-_Authors: Benedikt, Leon, Lina, Moritz_
+_Authors: [Benedikt](https://github.com/benediktreff), [Leon](https://github.com/TheBoulebu), [Lina](https://github.com/murasovl), [Moritz](https://github.com/moritz104)_
 
 This repository contains the code and resources for a streamlit application for a deep learning model to classify MRI brain slices. The model is specifically trained to work with axial slices, focusing on the central slice of the brain.
 
