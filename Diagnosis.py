@@ -82,7 +82,7 @@ if uploaded_image is not None:
             block1[0].markdown('')
             block1[0].markdown('')
             block1[0].markdown('')
-            #Expander DataFrame
+            #Expander DataFrame#
             with block1[0].expander("Details about probability distribution"):
                 st.write(data_df)
             #Expander Explanations
