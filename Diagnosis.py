@@ -90,11 +90,12 @@ if uploaded_image is not None:
                 st.warning("**Disclaimer:** This model has been developed as a tool to assist doctors. Any diagnosis should not be made without consultation with a qualified medical professional.")
                 if index_of_max == 'Healthy':
                     st.write(f"With an accuracy of {str(response_json['none']*100)[:5]}%, it is recommended to refer the patient to a specialist in neurology or psychiatry to confirm that Alzheimer's disease can be excluded from the diagnosis.")
-                if index_of_max == "Risk of Alzheimer's Disease (stage: mild)":
+                if index_of_max == "Alzheimer's Disease (stage: mild)":
                     st.write(f"The model predicts mild dementia with an accuracy of {str(response_json['mild']*100)[:5]}%. It is urged to refer the patient to a specialist in neurology or psychiatry to confirm the illness and the stage. Since the model has been trained to predict the three stages (Non-demented, Very Mild Dementia, Mild Dementia), it is important to be aware that the actual stage might also be moderate or even more advanced.")
-                if index_of_max == "Risk of Alzheimer's Disease (stage: very mild)":
+                if index_of_max == "Alzheimer's Disease (stage: very mild)":
                     st.write(f"The model predicts very mild dementia with an accuracy of {str(response_json['very_mild']*100)[:5]}%. It is advised to consult a specialist in neurology or psychiatry to confirm the stage of dementia. While the model is trained to predict this stage, further medical evaluation is necessary to determine the precise condition.")
-            with block1[0].expander('Additional insides about the prediction'):
+            #SHAPLEY VALUES
+            with block1[0].expander('Relevant MRI diagnosis areas'):
                 try:
                     url = "https://alzheimers-api-g5wnkiowzq-ew.a.run.app/shap"
                     files = {"img": uploaded_image.getvalue()}
@@ -111,22 +112,3 @@ if uploaded_image is not None:
 
         else:
             st.write("Error:", response.text)
-
-
-
-
-
-#SHAPLEY VALUES:
-
-#    try:
-#        url = "https://alzheimers-api-g5wnkiowzq-ew.a.run.app/shap"
-#        files = {"img": uploaded_image.getvalue()}
-#        res = requests.post(url, files=files)
-#        if res.status_code == 200:
-#            #if columns[2].button("Get explanation"): # das sieht richtig schlecht aus
-#            with st.expander("Get explanation"):
-#                st.image(res.content, caption="Shapley explaination.")
-#        else:
-#            st.write("Error:", res.text)
-#    except Exception as e:
-#        st.error(f"An error occurred: {e}")
