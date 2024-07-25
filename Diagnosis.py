@@ -68,7 +68,7 @@ if uploaded_image is not None:
         if response.status_code == 200:
             #get predicton
             response_json = response.json()
-            data_series = pd.Series([round(response_json['mild'],3)*100, round(response_json['none'],3)*100, round(response_json['very_mild'],3)*100], index=["Alzheimer's Disease (stage: mild)", "Healthy", "Alzheimer's Disease (stage: very mild)"])
+            data_series = pd.Series([round(response_json['mild'],3)*100, round(response_json['none'],3)*100, round(response_json['very_mild'],3)*100], index=["Mild Dementia", "Healthy", "Very mild Dementia"])
             #Create output DataFrame
             data_df = pd.DataFrame(data_series, columns=['Probability (%)'])
             data_df = data_df.sort_values(by='Probability (%)', ascending=False)
@@ -76,7 +76,7 @@ if uploaded_image is not None:
             #Diagnosis output
             block1[0].markdown(f"""
             <div style="border: 1px solid black; padding: 8px; background-color: #f0f0f0; border-radius: 3px;">
-                <h1 style="text-align: center; font-size: 18px;">Model diagnosis: {index_of_max}</h1>
+                <h1 style="text-align: center; font-size: 18px;"><strong>Model diagnosis:</strong>  {index_of_max}</h1>
             </div>
             """,unsafe_allow_html=True)
             block1[0].markdown('')
@@ -90,19 +90,17 @@ if uploaded_image is not None:
                 st.warning("**Disclaimer:** This model has been developed as a tool to assist doctors. Any diagnosis should not be made without consultation with a qualified medical professional.")
                 if index_of_max == 'Healthy':
                     st.write(f"With an accuracy of {str(response_json['none']*100)[:5]}%, it is recommended to refer the patient to a specialist in neurology or psychiatry to confirm that Alzheimer's disease can be excluded from the diagnosis.")
-                if index_of_max == "Alzheimer's Disease (stage: mild)":
+                if index_of_max == "Mild Dementi":
                     st.write(f"The model predicts mild dementia with an accuracy of {str(response_json['mild']*100)[:5]}%. It is urged to refer the patient to a specialist in neurology or psychiatry to confirm the illness and the stage. Since the model has been trained to predict the three stages (Non-demented, Very Mild Dementia, Mild Dementia), it is important to be aware that the actual stage might also be moderate or even more advanced.")
-                if index_of_max == "Alzheimer's Disease (stage: very mild)":
+                if index_of_max == "Very mild Dementia":
                     st.write(f"The model predicts very mild dementia with an accuracy of {str(response_json['very_mild']*100)[:5]}%. It is advised to consult a specialist in neurology or psychiatry to confirm the stage of dementia. While the model is trained to predict this stage, further medical evaluation is necessary to determine the precise condition.")
             #SHAPLEY VALUES
-            with block1[0].expander('Relevant MRI diagnosis areas'):
+            with block1[0].expander('Explaining the results'):
                 try:
                     url = "https://alzheimers-api-g5wnkiowzq-ew.a.run.app/shap"
                     files = {"img": uploaded_image.getvalue()}
                     res = requests.post(url, files=files)
                     if res.status_code == 200:
-                        #if columns[2].button("Get explanation"): # das sieht richtig schlecht aus
-                        #with st.expander("Get explanation"):
                         st.image(res.content, caption="Shapley explaination.")
                     else:
                         st.write("Error:", res.text)
