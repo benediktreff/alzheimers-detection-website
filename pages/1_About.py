@@ -41,7 +41,6 @@ st.markdown(
     The model uses the VGG-19 architecture with pre-trained weights from ImageNet. The top layers of VGG-19 are fine-tuned to adapt to the MRI classification task.
 
     **Model Performace**
-    - Loss: 0.756
     - Accuracy: 0.685
     - Recall: 0.659
     - Precision: 0.711
