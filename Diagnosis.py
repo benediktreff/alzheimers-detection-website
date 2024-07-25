@@ -82,7 +82,7 @@ if uploaded_image is not None:
             block1[0].markdown('')
             block1[0].markdown('')
             block1[0].markdown('')
-            #Expander DataFrame
+            #Expander DataFrame#
             with block1[0].expander("Details about probability distribution"):
                 st.write(data_df)
             #Expander Explanations
@@ -101,7 +101,7 @@ if uploaded_image is not None:
                     files = {"img": uploaded_image.getvalue()}
                     res = requests.post(url, files=files)
                     if res.status_code == 200:
-                        st.image(res.content, caption="Shapley explaination.")
+                        st.image(res.content, caption="Relavant MRI areas for diagnosis.")
                     else:
                         st.write("Error:", res.text)
                 except Exception as e:
