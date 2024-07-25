@@ -1,5 +1,5 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ImageOps
 
 st.set_page_config(page_title="About", page_icon=":material/info:")
 
@@ -51,3 +51,10 @@ st.markdown(
     - Explore the [Alzheimer's Dataset](https://www.kaggle.com/datasets/tourist55/alzheimers-dataset-4-class-of-images)
 """
 )
+
+#Group picture
+st.markdown('''### The Team''')
+col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12 = st.columns(12)
+image = Image.open('Group/group_pic2.JPG')
+image = ImageOps.exif_transpose(image)
+st.image(image, width=500)
